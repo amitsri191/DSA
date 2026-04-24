@@ -17,6 +17,9 @@ class Solution {
                 while(j<k && arr[k-1]==arr[k]){
                     k--;
                 }
+                while(j<k && arr[j]==arr[j+1]){
+                    j++;
+                }
             }else if(val<0){
                 j++;
                 continue;
