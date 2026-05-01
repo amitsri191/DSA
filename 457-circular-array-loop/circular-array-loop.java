@@ -1,6 +1,9 @@
 class Solution {
     public boolean circularArrayLoop(int[] nums) {
         for(int i=0;i<nums.length;i++){
+            if(nums[i]==0){
+                continue;
+            }
             Set<Integer> set=new HashSet<>();
             set.add(i);
             boolean isPos=nums[i]>0;
@@ -35,6 +38,20 @@ class Solution {
                     }
                 }
                 curr=next;
+            }
+            curr=i;
+            if(isPos){
+                while(nums[curr]>0){
+                        int next=nextIndx(nums,curr);
+                        nums[curr]=0;
+                        curr=next;
+                     }
+            }else{
+                while(nums[curr]<0){
+                        int next=nextIndx(nums,curr);
+                        nums[curr]=0;
+                        curr=next;
+                     }
             }
         }
         return false;
