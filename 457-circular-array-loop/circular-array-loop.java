@@ -4,54 +4,51 @@ class Solution {
             if(nums[i]==0){
                 continue;
             }
-            Set<Integer> set=new HashSet<>();
-            set.add(i);
+             
             boolean isPos=nums[i]>0;
-            int curr=i;
-            while(true){
-                int next=nextIndx(nums,curr);
-                if(isPos){
-                    if(nums[next]<0){
-                        break;
-                    }else{
-                        if(set.contains(next)){
-                            if(curr!=next){
-                                return true;
-                            }else{
-                                break;
-                            }
-                        }
-                        set.add(next);
-                    }
-                }else{
-                    if(nums[next]>0){
-                        break;
-                    }else{
-                        if(set.contains(next)){
-                            if(curr!=next){
-                                return true;
-                            }else{
-                                break;
-                            }
-                        }
-                        set.add(next);
-                    }
-                }
-                curr=next;
-            }
-            curr=i;
+            int slow=i;
+             int fast=i;
+        do{
+            slow=nextIndx(nums,slow);
+            fast=nextIndx(nums,fast);
             if(isPos){
-                while(nums[curr]>0){
-                        int next=nextIndx(nums,curr);
-                        nums[curr]=0;
-                        curr=next;
-                     }
+                if(nums[fast]<0){
+                    break;
+                }
             }else{
-                while(nums[curr]<0){
-                        int next=nextIndx(nums,curr);
-                        nums[curr]=0;
-                        curr=next;
-                     }
+                if(nums[fast]>0){
+                    break;
+                }
+            }
+            fast=nextIndx(nums,fast);
+            if(isPos){
+                if(nums[fast]<0){
+                    break;
+                }
+            }else{
+                if(nums[fast]>0){
+                    break;
+                }
+            }
+            if(slow==fast){
+                if(slow!=nextIndx(nums,slow)){
+                    return true;
+                }
+            }
+        }while(slow!=fast);
+        int curr=i;
+        if (isPos){
+                while (nums[curr]>0){
+                    int next=nextIndx(nums,curr);
+                    nums[curr]=0;
+                    curr=next;
+                }
+            }else {
+                while (nums[curr]<0){
+                    int next=nextIndx(nums,curr);
+                    nums[curr]=0;
+                    curr=next;
+                }
             }
         }
         return false;
