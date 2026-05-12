@@ -21,7 +21,7 @@ public class Solution {
             if (set.contains(currnode2)){
                 return true;
             }
-            if (!flag){
+            else{
                 set.add(currnode2);
             }
             currnode2=currnode2.next;
