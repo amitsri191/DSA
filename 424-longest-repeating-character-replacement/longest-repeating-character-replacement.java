@@ -16,7 +16,7 @@ class Solution {
             if (maxLen<=k){
                 length=Math.max(length,j-i+1);
             }
-            else if(maxLen>k){
+            else {
                  while (i<=j && maxLen>k){
                      index=s.charAt(i)-65;
                      count[index]--;
