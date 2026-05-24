@@ -12,23 +12,14 @@ class Solution {
                 maxSize=Math.max(maxLen,count[1]);
             }
             else if (count[0]<=k){
-//                max=Math.max(max,count[arr[j]]);
                 maxSize=Math.max(maxSize,(j-i)+1);
-            }else{
+            }else if(count[0]>k){
                 while (i<=j && count[0]>k){
                     count[arr[i]]--;
                     i++;
 
                 }
             }
-//            maxLen=(j-i+1)-max;
-//            if (maxLen>0 && maxLen<=k){
-//               maxSize=Math.max(maxSize,j-i+1);
-//            }else{
-//                count[arr[i]]--;
-//                i++;
-//            }
-//
             j++;
         }
         return maxSize==Integer.MIN_VALUE?0:maxSize;
