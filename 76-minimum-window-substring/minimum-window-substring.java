@@ -7,7 +7,7 @@ class Solution {
         int minLength =Integer.MAX_VALUE;
 
         Map<Character,Integer> map=new HashMap<>();
-
+        if(s.length()<t.length() || s.length()==0 || t.length()==0) {return "";}
 
         for (int k = 0; k < t.length(); k++) {
             char ch=t.charAt(k);
