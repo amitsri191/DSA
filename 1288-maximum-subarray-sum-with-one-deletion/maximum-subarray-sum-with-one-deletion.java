@@ -2,7 +2,7 @@ class Solution {
     public int maximumSum(int[] arr) {
 
         int noPower=arr[0];
-        int power=0;
+        int power=arr[0];
         int res=arr[0];
         for(int i=1;i<arr.length;i++){
             int v1=arr[i];
