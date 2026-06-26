@@ -7,7 +7,7 @@ class Solution {
             if(nums[i]==0) nums[i]=-1;
             sum+=nums[i];
             if(map.containsKey(sum)) length=Math.max(length,i-map.get(sum));
-            map.put(sum,map.getOrDefault(sum,i));
+            else map.put(sum,i);
         }
         return length==Integer.MIN_VALUE?0:length;
     }
