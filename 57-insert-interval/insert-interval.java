@@ -1,21 +1,18 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        List<int[]> list=new ArrayList<>(Arrays.asList(intervals));
-         list.add(newInterval);
-        list.sort(Comparator.comparingInt(a -> a[0]));
-        List<int[]> list2=new ArrayList<>();
-        int[] curr= list.get(0);
-        list2.add(curr);
-        for (int i = 1; i < list.size(); i++) {
-            int[] next=list.get(i);
-            if (curr[0]<=next[0] && curr[1]>=next[0]){
-                curr[0]=Math.min(curr[0],next[0]);
-                curr[1]=Math.max(curr[1],next[1]);
-            }else{
-                curr=next;
-                list2.add(next);
-            }
+        int[][] arr=new int[intervals.length+1][2];
+        int i=0,j=0;
+        while(i< intervals.length && intervals[i][1]<newInterval[0]){
+            arr[j++]=intervals[i++];
         }
-        return list2.toArray(new int[list2.size()][]);
+        while(i< intervals.length && intervals[i][0]<=newInterval[1]){
+            newInterval[0]=Math.min(newInterval[0],intervals[i][0]);
+            newInterval[1]=Math.max(newInterval[1],intervals[i++][1]);
+        }
+        arr[j++]=newInterval;
+        while(i< intervals.length){
+            arr[j++]=intervals[i++];
+        }
+        return Arrays.copyOf(arr,j);
     }
 }
