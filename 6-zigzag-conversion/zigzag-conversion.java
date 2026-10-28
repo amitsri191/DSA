@@ -1,30 +1,18 @@
 class Solution {
-    public String convert(String s, int i) {
-        if(i==1){
-            return s;
-        }
-       StringBuilder sb=new StringBuilder();
-        for (int j = 0; j < i; j++) {
-            int idx=j;
-            int deltaSouth=2*(i-1-j);
-            int deltaNorth=2*(j);
-            boolean goingSouth=true;
-            while (idx<s.length()){
-                sb.append(s.charAt(idx));
-                if (j==0){
-                    idx+=deltaSouth;
-                } else if (j==i-1) {
-                    idx+=deltaNorth;
-                }else {
-                    if (goingSouth) {
-                        idx += deltaSouth;
-                    } else {
-                        idx += deltaNorth;
-                    }
-                }
-                goingSouth=!goingSouth;
+    public String convert(String s, int numRows) {
+        if(numRows == 1) return s ;
+        StringBuilder result = new StringBuilder() ;
+        int n = s.length() ;
+        int cycle = 2 * (numRows - 1) ;
+        for(int r = 0 ; r < numRows ; r++){
+            for(int j = r ; j < n ; j += cycle){
+                 result.append(s.charAt(j)) ;
+                 int diag = j + cycle - 2 * r ;
+                 if(r != 0 && r != numRows - 1 && diag < n){
+                    result.append(s.charAt(diag)) ;
+                 }
             }
         }
-        return sb.toString(); 
+        return result.toString() ;
     }
 }
