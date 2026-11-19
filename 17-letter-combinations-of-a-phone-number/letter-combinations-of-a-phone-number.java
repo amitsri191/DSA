@@ -1,22 +1,6 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        Map<Character,String> map=new HashMap<>();
-        String two="abc";
-        String three="def";
-        String four="ghi";
-        String five="jkl";
-        String six="mno";
-        String seven="pqrs";
-        String eight="tuv";
-        String nine="wxyz";
-        map.put('2',two);
-        map.put('3',three);
-        map.put('4',four);
-        map.put('5',five);
-        map.put('6',six);
-        map.put('7',seven);
-        map.put('8',eight);
-        map.put('9',nine);
+        Map<Character,String> map=getMap();
         int idx=0;
         List<String> ans=new ArrayList<>();
         String temp=new String();
@@ -39,5 +23,17 @@ class Solution {
             s+=c;
             solve(idx+1,digits,s,ans,map);
          }
+    }
+    public Map<Character,String> getMap(){
+        Map<Character,String> map=new HashMap<>();
+        map.put('2',"abc");
+        map.put('3',"def");
+        map.put('4',"ghi");
+        map.put('5',"jkl");
+        map.put('6',"mno");
+        map.put('7',"pqrs");
+        map.put('8',"tuv");
+        map.put('9',"wxyz");
+        return map;
     }
 }
